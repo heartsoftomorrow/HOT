@@ -1,0 +1,104 @@
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
+const Layout = ({ children }) => (
+  <div className="min-h-screen bg-white text-red-600 font-sans">
+    <nav className="flex justify-between items-center p-6 border-b border-red-200">
+      <Link to="/" className="text-2xl font-bold">
+        Hearts of Tomorrow
+      </Link>
+      <div className="space-x-6">
+        <Link to="/services" className="hover:underline">
+          Services
+        </Link>
+        <Link to="/about" className="hover:underline">
+          About
+        </Link>
+      </div>
+    </nav>
+    <main className="p-6 max-w-5xl mx-auto">{children}</main>
+    <footer className="text-center py-6 border-t border-red-200 text-sm">
+      © 2025 Hearts of Tomorrow. All rights reserved.
+    </footer>
+  </div>
+);
+
+const Home = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="space-y-4 text-center"
+  >
+    <h1 className="text-4xl font-bold">Fighting Heart Disease with Youth Ingenuity</h1>
+    <p className="text-lg max-w-2xl mx-auto">
+      We empower young minds to drive practical, preventative solutions in the battle against cardiovascular disease.
+    </p>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="inline-block bg-red-600 text-white px-6 py-3 rounded-full shadow-lg cursor-pointer"
+    >
+      <Link to="/services">Explore Our Initiatives</Link>
+    </motion.div>
+  </motion.div>
+);
+
+const Services = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.6 }}
+    className="space-y-8"
+  >
+    <h2 className="text-3xl font-bold">Our Services</h2>
+    <ul className="space-y-4">
+      <li className="p-4 bg-red-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 className="text-xl font-semibold">Youth-Led Innovation Labs</h3>
+        <p>We guide students in designing impactful health tech and education projects.</p>
+      </li>
+      <li className="p-4 bg-red-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 className="text-xl font-semibold">Community Preventative Campaigns</h3>
+        <p>We organize workshops, screenings, and outreach to spread heart health awareness.</p>
+      </li>
+      <li className="p-4 bg-red-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 className="text-xl font-semibold">Mentorship & Research Support</h3>
+        <p>We connect youth with experts to support health-related research and development.</p>
+      </li>
+    </ul>
+  </motion.div>
+);
+
+const About = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.6 }}
+    className="space-y-6"
+  >
+    <h2 className="text-3xl font-bold">About Us</h2>
+    <p>
+      Hearts of Tomorrow is a nonprofit led by young innovators and dedicated to combatting heart disease through
+      actionable solutions and preventative care. Founded with a mission to blend youth creativity with scientific
+      impact, we aim to build a healthier future driven by compassion, collaboration, and agency.
+    </p>
+  </motion.div>
+);
+
+export default function App() {
+  useEffect(() => {
+    document.title = "Hearts of Tomorrow";
+  }, []);
+
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Layout>
+    </Router>
+  );
+}

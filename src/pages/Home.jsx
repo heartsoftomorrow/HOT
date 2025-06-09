@@ -36,6 +36,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <div className="page-background" />
+      <div className="grid-overlay" />
       <div className="floating-shapes" />
 
       <section className="py-12 content-section">
